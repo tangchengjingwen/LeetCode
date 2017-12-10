@@ -1,6 +1,7 @@
 package com.leetcode1209.ReadNCharactersGivenRead4;
 
 //		
+
 //		
 //		The API: int read4(char *buf) reads 4 characters at a time from a file.
 //		
@@ -11,25 +12,34 @@ package com.leetcode1209.ReadNCharactersGivenRead4;
 //		Note:
 //		The read function will only be called once for each test case.
 
-
-
-
 /* The read4 API is defined in the parent class Reader4.
 int read4(char[] buf); */
 
 public class ReadNCharactersGivenRead4 extends Reader4 {
-/**
-* @param buf Destination buffer
-* @param n   Maximum number of characters to read
-* @return    The number of characters read
-*/
-public int read(char[] buf, int n) {
-  
+	/**
+	 * @param buf
+	 *            Destination buffer
+	 * @param n
+	 *            Maximum number of characters to read
+	 * @return The number of characters read
+	 */
+	public int read(char[] buf, int n) {
+		int count = 0;
+		char[] mybuf = new char[4];
+		while(count < n) {
+			int num = Reader4.read4(mybuf);
+			if(num==0) break;
+			int index = 0;
+			while(index<num && count<n) {
+				 buf[count++] = mybuf[index++];
+			}
+		}
+		return count;
+	}
 }
-}
 
-
-
-class Reader4{
-	
+class Reader4 {
+	static int read4(char[] buf) {
+		return 0;
+	};
 }
