@@ -12,7 +12,7 @@ import java.util.Stack;
  * memory, where h is the height of the tree.
  * 
  * @author tangc
- *
+ *time:O(n)
  */
 public class BinarySearchTreeIterator {
 
