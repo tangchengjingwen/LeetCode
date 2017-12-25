@@ -1,4 +1,4 @@
-package com.leetcode1222.PerfectSquares;
+package com.leetcode1224.PerfectSquares;
 
 import java.util.Arrays;
 
