@@ -14,18 +14,7 @@ package com.leetcode1205.LengthofLastWord;
 // 从后往前，注意去除末尾的空字符。
 public class LengthOfLastWord {
     public static int lengthOfLastWord(String s) {
-        int i = s.length() - 1;
-        
-        while(i >= 0 &&s.charAt(i) == ' ') {
-        	i--;
-        }
-        
-        int length = 0;
-        while(i >= 0 && s.charAt(i) != ' ') {
-        	length++;
-        	i--;
-        }
-    	return length;
+    	return s.trim().length() - s.trim().lastIndexOf(" ") - 1;
     }
     public static void main(String[] args) {
 		String s = "Hello dilireba ";

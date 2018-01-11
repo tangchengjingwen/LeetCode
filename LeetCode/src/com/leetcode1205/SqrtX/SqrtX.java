@@ -16,8 +16,8 @@ package com.leetcode1205.SqrtX;
 public class SqrtX {
 	//平方根的值按规律不会大于它的中值+1，采用二分法
 	public static int mySqrt(int x) throws Exception {
-		long low = 0;
-		long high = x/2 + 1;
+		long low = 1;
+		long high = x/2 +	 1;
 		long tmp;
 		long mid = 1;
 		if (x < 0) 
@@ -39,7 +39,7 @@ public class SqrtX {
 		
 	}
 	public static void main(String[] args) throws Exception {
-		int x = 4;
+		int x = 17;
 		System.out.println(mySqrt(x));
 	}
 }

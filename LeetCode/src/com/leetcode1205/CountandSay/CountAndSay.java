@@ -29,16 +29,17 @@ public class CountAndSay {
 		String str = countAndSay(n - 1) + "*";
 		char[] c = str.toCharArray();
 		int count = 1;
-		String s = "";
+		StringBuilder s = new StringBuilder();
 		for (int i = 0; i < c.length - 1; i++) {
 			if (c[i] == c[i+1]) {
 				count++;
 			} else {
-				s = s + count + c[i];
+				s.append(count);
+				s.append(c[i]);
 				count = 1;
 			}
 		}
-		return s;	
+		return s.toString();	
 	}
 	public static void main(String[] args) {
 		String countAndSay = countAndSay(5);

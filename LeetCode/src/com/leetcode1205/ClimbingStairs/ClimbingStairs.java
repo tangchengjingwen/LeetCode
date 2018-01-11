@@ -41,7 +41,7 @@ public class ClimbingStairs {
 		return second;
 	}
 	public static void main(String[] args) {
-		int n = 10;
+		int n =2;
 		System.out.println(ClimbStairs(n));
 	}
 }
