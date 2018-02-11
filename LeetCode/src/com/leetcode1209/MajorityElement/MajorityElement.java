@@ -8,52 +8,47 @@ import java.util.Map;
 //
 //You may assume that the array is non-empty and the majority element always exist in the array.
 public class MajorityElement {
-	
-	//暴力法
+
+	// 推荐 time:O(n) space:O(1)
 	public int majorityElement(int[] nums) {
-		int majorityCount = nums.length/2;
+		int count = 0;
+		int res = 0;
 		for (int num : nums) {
-			int count = 0;
-			for (int ele : nums) {
-				if(ele == num) {
-					count += 1;
-				}
+			if (count == 0) {
+				res = num;
 			}
-			if(count > majorityCount) {
-				return num;
-			}
-		}
-		return -1;
-	}
-	//-----------------------------------------------------------------
-	//hashmap
-	public int majorityElement2(int[] nums) {
-		Map<Integer, Integer> counts = countNums(nums);
-		
-		Map.Entry<Integer, Integer> majorityEntry = null;
-		for (Map.Entry<Integer, Integer> entry : counts.entrySet()) {
-			if(majorityEntry == null || entry.getValue()>majorityEntry.getValue()) {
-				majorityEntry = entry;
-			}
-		}
-		return majorityEntry.getKey();
-	}
-	private Map<Integer,Integer> countNums(int[] nums) {
-		Map<Integer,Integer> counts = new HashMap<Integer,Integer>();
-		for(int num : nums) {
-			if(!counts.containsKey(num)) {
-				counts.put(num, 1);
+			if (num != res) {
+				count--;
 			} else {
-				counts.put(num, counts.get(num)+1);
+				count++;
 			}
 		}
-		return counts;
+		return res;
 	}
-	
-	//------------------------------------------------
-	//sorting
+
+	// -----------------------------------------------------------------
+	// hashmap time:O(n) sapce:O(n)
+	public int majorityElement2(int[] nums) {
+		HashMap<Integer, Integer> map = new HashMap<>();
+		int res = 0;
+		for (int num : nums) {
+			if (!map.containsKey(num)) {
+				map.put(num, 1);
+			} else {
+				map.put(num, map.get(num) + 1);
+			}
+			if (map.get(num) > nums.length / 2) {
+				res = num;
+				break;
+			}
+		}
+		return res;
+	}
+
+	// ------------------------------------------------
+	// sorting time: O(nlogn) space: O(1)
 	public int majorityElement3(int[] nums) {
 		Arrays.sort(nums);
-		return nums[nums.length/2];
+		return nums[nums.length / 2];
 	}
 }

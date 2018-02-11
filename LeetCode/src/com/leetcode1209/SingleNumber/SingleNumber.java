@@ -21,5 +21,7 @@ public class SingleNumber {
 	public static void main(String[] args) {
 		int[] nums = {1,2,3,4,3,2,1};
 		System.out.println(singleNumber(nums));
+		
+		System.out.println(7888 ^ 0);
 	}
 }

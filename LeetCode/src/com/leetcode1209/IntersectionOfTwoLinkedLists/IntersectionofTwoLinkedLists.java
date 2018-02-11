@@ -41,6 +41,18 @@ public class IntersectionofTwoLinkedLists {
 		}
 		return A;
 	}
+	
+	//time:O(m+n)  space:O(1) 
+	public ListNode getIntersectionNode2 (ListNode headA, ListNode headB) {
+		if (headA == null || headB == null) return null;
+		ListNode a = headA;
+		ListNode b = headB;
+		while (a != b) {
+			a = a == null ? headB : a.next;
+			b = b == null ? headA : b.next;
+		}
+		return a;
+	}
 }
 
 

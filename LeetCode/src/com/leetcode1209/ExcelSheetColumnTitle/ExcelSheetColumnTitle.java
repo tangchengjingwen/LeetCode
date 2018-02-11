@@ -13,14 +13,17 @@ package com.leetcode1209.ExcelSheetColumnTitle;
 //    28 -> AB 
 
 public class ExcelSheetColumnTitle {
-	public String convertToTitle(int n) {
-		String s = "";
+	public static String convertToTitle(int n) {
+		StringBuilder s = new StringBuilder();
 		while(n != 0) {
 			int temp = (n-1) % 26;
-			s = (char)('A' + temp) + s;
+			s = s.append((char)('A' + temp));
 			n = (n-1) / 26;
 		}
-		return s;
+		return s.toString();
 	}
-
+	public static void main(String[] args) {
+		System.out.println(convertToTitle(27));
+		
+	}
 }

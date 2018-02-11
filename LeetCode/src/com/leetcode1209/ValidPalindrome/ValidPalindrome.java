@@ -13,6 +13,13 @@ package com.leetcode1209.ValidPalindrome;
 //Have you consider that the string might be empty? This is a good question to ask during an interview.
 //
 //For the purpose of this problem, we define empty string as valid palindrome.
+
+
+/**
+ * time:O(n)    space:O(1)
+ * @author tangc
+ *
+ */
 public class ValidPalindrome {
 	//采用暴力法
 	public boolean isPalindrome(String s) {
@@ -24,10 +31,10 @@ public class ValidPalindrome {
 		s = s.toLowerCase();
 		
 		while(left<right) {
-			while(left < right && !isNumberOrAlpha(s.charAt(left))) {
+			while(left < right && !Character.isLetterOrDigit(s.charAt(left))) {
 				left++;
 			}
-			while(left < right && !isNumberOrAlpha(s.charAt(right))) {
+			while(left < right && !Character.isLetterOrDigit(s.charAt(right))) {
 				right--;
 			}
 			if(s.charAt(left) != s.charAt(right)) {
@@ -38,9 +45,7 @@ public class ValidPalindrome {
 		return true;
 	}
 	
-	private boolean isNumberOrAlpha(char charAt) {
-		return (charAt >= '0' && charAt<='9') || (charAt >= 'a' && charAt<='z') ||(charAt >= 'A' && charAt<='Z'); 
-	}
+
 		
 }
 

@@ -1,7 +1,6 @@
 package com.leetcode1209.MinStack;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Stack;
 
 //Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
 //
@@ -20,51 +19,41 @@ import java.util.List;
 //minStack.getMin();   --> Returns -2.
 
 public class MinStack {
-	List<Integer> stack ;
-	List<Integer> minStack ;
-	
-	
+
+	private Stack<Integer> stack;
+	private Stack<Integer> miniStack;
+
 	public MinStack() {
-		stack = new ArrayList<Integer>();
-		minStack = new ArrayList<Integer>();
-    }
-    
-    public void push(int x) {
-    	stack.add(x);
-    	if(minStack.isEmpty() || x <= minStack.get(minStack.size()-1))
-    		minStack.add(x);
-    }
-    
-    public void pop() {
-    	if(stack.isEmpty()) return;
-    	int ele = stack.remove(stack.size()-1);
-    	if(!minStack.isEmpty() && minStack.get(minStack.size()-1)==ele)
-    		minStack.remove(minStack.size()-1);
-    }
-    
-    public int top() {
-    	if(stack.isEmpty()) return 0;
-    	return stack.get(stack.size()-1);
-    }
-    
-    public int getMin() {
-    	if(minStack.isEmpty()) return 0;
-    	return minStack.get(minStack.size()-1);
-    }
+		stack = new Stack<>();
+		miniStack = new Stack<>();
+	}
+
+	public void push(int x) {
+		stack.push(x);
+		if (!miniStack.isEmpty()) {
+			int min = miniStack.peek();
+			if (x <= min) {
+				miniStack.push(x);
+			}
+		} else {
+			miniStack.push(x);
+		}
+	}
+
+	public void pop() {
+		int x = stack.pop();
+		if (!miniStack.isEmpty()) {
+			if (x == miniStack.peek()) {
+				miniStack.pop();
+			}
+		}
+	}
+
+	public int top() {
+		return stack.peek();
+	}
+
+	public int getMin() {
+		return miniStack.peek();
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

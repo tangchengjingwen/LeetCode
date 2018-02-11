@@ -24,17 +24,18 @@ public class ReadNCharactersGivenRead4 extends Reader4 {
 	 * @return The number of characters read
 	 */
 	public int read(char[] buf, int n) {
-		int count = 0;
-		char[] mybuf = new char[4];
-		while(count < n) {
-			int num = Reader4.read4(mybuf);
-			if(num==0) break;
-			int index = 0;
-			while(index<num && count<n) {
-				 buf[count++] = mybuf[index++];
+		char[] tmp = new char[4];
+		int index = 0;
+		while(true) {
+			int count = Reader4.read4(tmp);
+			count = Math.min(count, n - index);
+			for (int i = 0 ; i < count; i++) {
+				buf[index++] = tmp[i];
+			}
+			if (index == n || count < 4) {
+				return index;
 			}
 		}
-		return count;
 	}
 }
 

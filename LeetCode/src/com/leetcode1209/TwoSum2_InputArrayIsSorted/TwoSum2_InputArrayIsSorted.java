@@ -12,15 +12,13 @@ import java.util.Map;
 //Input: numbers={2, 7, 11, 15}, target=9
 //Output: index1=1, index2=2
 
-
- 
 public class TwoSum2_InputArrayIsSorted {
-	//map
+	// map
 	public int[] twoSum(int[] numbers, int target) {
 		int[] res = new int[2];
-		Map<Integer,Integer> map = new HashMap<>();
-		for(int i = 0; i < numbers.length; i++) {
-			if(map.containsKey(numbers[i])) {
+		Map<Integer, Integer> map = new HashMap<>();
+		for (int i = 0; i < numbers.length; i++) {
+			if (map.containsKey(numbers[i])) {
 				res[0] = map.get(numbers[i]) + 1;
 				res[1] = i + 1;
 			} else {
@@ -29,21 +27,32 @@ public class TwoSum2_InputArrayIsSorted {
 		}
 		return res;
 	}
-	//数组是升序排列，设start初始值为0，end初始值为numbers.length-1，
-//	先计算numbers中start，end对应两个数的和，如果比target大，end– -，如果比target小，start++
+
+	/**
+	 * 数组是升序排列，设start初始值为0，end初始值为numbers.length-1，
+	 * 先计算numbers中start，end对应两个数的和，如果比target大，end– -，如果比target小，start++
+	 * time: O(logn)      space:O(1)
+	 * @param numbers
+	 * @param target
+	 * @return
+	 */
 	public int[] twoSum2(int[] numbers, int target) {
-		int res[] = new int[2];
-		int start = 0, end = numbers.length-1;
-		while (numbers[start] + numbers[end] != target) {
-			if(numbers[start] + numbers[end] > target) {
-				end--;
+		if (numbers == null || numbers.length < 2) {
+			return new int[] { -1, -1 };
+		}
+		int left = 0, right = numbers.length - 1;
+		while (left < right) {
+			int sum = numbers[left] = numbers[right];
+			if (target == sum) {
+				return new int[] { left, right };
+			} else if (sum > target) {
+				right--;
 			} else {
-				start++;
+				left++;
 			}
 		}
-		res[0] = start + 1;
-		res[1] = end + 1;
-		return res;
+		return new int[] { -1, -1 };
+
 	}
-	
+
 }
